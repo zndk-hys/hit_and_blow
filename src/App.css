@@ -1,0 +1,44 @@
+.box {
+	max-width: 200px;
+	margin: 0 auto;
+}
+
+.inputDigits {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0 10px;
+	margin-bottom: 10px;
+}
+
+.inputDigit {
+	aspect-ratio: 1;
+	background: #fff;
+	border: solid 1px #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputDigit.focus {
+	border-color: black;
+}
+
+.inputButtons {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.inputButton {
+	aspect-ratio: 1;
+}
+
+.deleteButton {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.submitButton {
+	width: 100%;
+}
