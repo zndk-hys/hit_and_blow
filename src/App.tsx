@@ -1,15 +1,30 @@
 import { useState } from "react";
 import "./App.css";
 import { compareDigits, generateRandomDigits } from "./utils/logic";
+import { Keypad } from "./components/Numpad";
+import { InputDisplay } from "./components/InputDisplay";
+import { CompareHistory } from "./components/CompareHistory";
+import { CompleteHitResult } from "./components/CompleteHitResult";
 
-type FocusIndex = number;
-export type Digits = "" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+export type FocusIndex = number;
+export type Digits =
+	| ""
+	| "0"
+	| "1"
+	| "2"
+	| "3"
+	| "4"
+	| "5"
+	| "6"
+	| "7"
+	| "8"
+	| "9";
 export type CompareResult = {
 	digits: Digits[];
 	hit: number;
 	blow: number;
 };
-type CompareHistoryRecord = {
+export type CompareHistoryRecord = {
 	submitIndex: number;
 	compareResult: CompareResult;
 };
@@ -76,6 +91,10 @@ function App() {
 		}
 	};
 
+	const onClickReplay = () => {
+		resetGame();
+	};
+
 	const resetForm = () => {
 		setInputDigits(Array(4).fill(""));
 		setFocus(0);
@@ -90,155 +109,23 @@ function App() {
 
 	return (
 		<div className="box">
-			{compareHistory && (
-				<ul>
-					{compareHistory.map((record) => (
-						<li key={record.submitIndex}>
-							{record.compareResult.digits.join(",")} {record.compareResult.hit}{" "}
-							{record.compareResult.blow}
-						</li>
-					))}
-				</ul>
-			)}
+			{compareHistory && <CompareHistory compareHistory={compareHistory} />}
 			{!clear && (
 				<div>
-					<div className="inputDigits">
-						<button
-							type="button"
-							onClick={() => onClickInputDigit(0)}
-							className={`inputDigit ${focus === 0 ? "focus" : ""}`}
-						>
-							{inputDigits[0]}
-						</button>
-						<button
-							type="button"
-							onClick={() => onClickInputDigit(1)}
-							className={`inputDigit ${focus === 1 ? "focus" : ""}`}
-						>
-							{inputDigits[1]}
-						</button>
-						<button
-							type="button"
-							onClick={() => onClickInputDigit(2)}
-							className={`inputDigit ${focus === 2 ? "focus" : ""}`}
-						>
-							{inputDigits[2]}
-						</button>
-						<button
-							type="button"
-							onClick={() => onClickInputDigit(3)}
-							className={`inputDigit ${focus === 3 ? "focus" : ""}`}
-						>
-							{inputDigits[3]}
-						</button>
-					</div>
-					<div className="inputButtons">
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("0")}
-							disabled={inputDigits.includes("0")}
-						>
-							0
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("1")}
-							disabled={inputDigits.includes("1")}
-						>
-							1
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("2")}
-							disabled={inputDigits.includes("2")}
-						>
-							2
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("3")}
-							disabled={inputDigits.includes("3")}
-						>
-							3
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("4")}
-							disabled={inputDigits.includes("4")}
-						>
-							4
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("5")}
-							disabled={inputDigits.includes("5")}
-						>
-							5
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("6")}
-							disabled={inputDigits.includes("6")}
-						>
-							6
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("7")}
-							disabled={inputDigits.includes("7")}
-						>
-							7
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("8")}
-							disabled={inputDigits.includes("8")}
-						>
-							8
-						</button>
-						<button
-							className="inputButton"
-							type="button"
-							onClick={() => onClickNum("9")}
-							disabled={inputDigits.includes("9")}
-						>
-							9
-						</button>
-					</div>
-					<button
-						className="deleteButton"
-						type="button"
-						onClick={() => onClickDelete()}
-					>
-						削除
-					</button>
-					<button
-						className="submitButton"
-						type="button"
-						onClick={() => onClickSubmit()}
-						disabled={inputDigits.join("").length < 4}
-					>
-						送信
-					</button>
+					<InputDisplay
+						focus={focus}
+						inputDigits={inputDigits}
+						onClickInputDigit={onClickInputDigit}
+					/>
+					<Keypad
+						inputDigits={inputDigits}
+						onClickNum={onClickNum}
+						onClickDelete={onClickDelete}
+						onClickSubmit={onClickSubmit}
+					/>
 				</div>
 			)}
-			{clear && (
-				<div>
-					クリア
-					<button type="button" onClick={() => resetGame()}>
-						もう一度
-					</button>
-				</div>
-			)}
+			{clear && <CompleteHitResult onClickReplay={onClickReplay} />}
 		</div>
 	);
 }
