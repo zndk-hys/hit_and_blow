@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { compareDigits, generateRandomDigits } from "../utils/logic";
 import type { CompareHistoryRecord, Digits, FocusIndex } from "../types";
+import { DIGIT_LENGTH } from "../constants";
 
 export function useHitBlowGame() {
 	const [randomDigits, setRandomDigits] = useState<Digits[]>(
-		generateRandomDigits(4),
+		generateRandomDigits(DIGIT_LENGTH),
 	);
 	const [focus, setFocus] = useState<FocusIndex>(0);
-	const [inputDigits, setInputDigits] = useState<Digits[]>(Array(4).fill(""));
+	const [inputDigits, setInputDigits] = useState<Digits[]>(
+		Array(DIGIT_LENGTH).fill(""),
+	);
 	const [compareHistory, setCompareHistory] = useState<CompareHistoryRecord[]>(
 		[],
 	);
@@ -19,8 +22,9 @@ export function useHitBlowGame() {
 
 	const onClickNum = (num: Digits) => {
 		setInputDigits((inputDigits) => {
-			inputDigits[focus] = num;
-			return inputDigits.concat();
+			const cloneinputDigits = inputDigits.concat();
+			cloneinputDigits[focus] = num;
+			return cloneinputDigits;
 		});
 
 		setFocus((focus) => {
@@ -59,7 +63,7 @@ export function useHitBlowGame() {
 			},
 		]);
 		resetForm();
-		if (compareResult.hit === 4) {
+		if (compareResult.hit === DIGIT_LENGTH) {
 			setClear(true);
 		}
 	};
@@ -69,13 +73,13 @@ export function useHitBlowGame() {
 	};
 
 	const resetForm = () => {
-		setInputDigits(Array(4).fill(""));
+		setInputDigits(Array(DIGIT_LENGTH).fill(""));
 		setFocus(0);
 	};
 
 	const resetGame = () => {
 		resetForm();
-		setRandomDigits(generateRandomDigits(4));
+		setRandomDigits(generateRandomDigits(DIGIT_LENGTH));
 		setCompareHistory([]);
 		setClear(false);
 	};

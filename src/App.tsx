@@ -1,5 +1,5 @@
 import "./App.css";
-import { Keypad } from "./components/Numpad";
+import { Keypad } from "./components/Keypad";
 import { InputDisplay } from "./components/InputDisplay";
 import { CompareHistory } from "./components/CompareHistory";
 import { CompleteHitResult } from "./components/CompleteHitResult";
