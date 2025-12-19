@@ -1,4 +1,4 @@
-import type { Digits, FocusIndex } from "../App";
+import type { Digits, FocusIndex } from "../types";
 
 type Props = {
 	focus: FocusIndex;

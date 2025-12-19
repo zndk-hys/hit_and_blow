@@ -1,4 +1,4 @@
-import type { CompareHistoryRecord } from "../App";
+import type { CompareHistoryRecord } from "../types";
 
 type Props = {
 	compareHistory: CompareHistoryRecord[];

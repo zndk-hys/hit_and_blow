@@ -1,4 +1,4 @@
-import type { Digits } from "../App";
+import type { Digits } from "../types";
 
 type Props = {
 	inputDigits: Digits[];

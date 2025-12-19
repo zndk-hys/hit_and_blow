@@ -1,4 +1,4 @@
-import type { CompareResult, Digits } from "../App";
+import type { CompareResult, Digits } from "../types";
 
 export function generateRandomDigits(length: number): Digits[] {
 	const values: Digits[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { CompareHistoryRecord, Digits, FocusIndex } from "../App";
 import { compareDigits, generateRandomDigits } from "../utils/logic";
+import type { CompareHistoryRecord, Digits, FocusIndex } from "../types";
 
 export function useHitBlowGame() {
 	const [randomDigits, setRandomDigits] = useState<Digits[]>(
