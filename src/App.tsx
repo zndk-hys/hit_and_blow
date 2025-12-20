@@ -1,42 +1,25 @@
 import "./App.css";
-import { Keypad } from "./components/Keypad";
-import { InputDisplay } from "./components/InputDisplay";
 import { CompareHistory } from "./components/CompareHistory";
 import { CompleteHitResult } from "./components/CompleteHitResult";
-import { useHitBlowGame } from "./hooks/useGameLogic";
+import { useHitBlowGame } from "./hooks/useHitBlowGame";
+import { HitAndBlowPad } from "./components/HitAndBlowPad";
 
 function App() {
 	const {
-		focus,
-		inputDigits,
+		gameRound,
 		compareHistory,
 		clear,
-		onClickInputDigit,
-		onClickNum,
-		onClickDelete,
-		onClickSubmit,
-		onClickReplay,
+		submitAnswer,
+		resetGame,
 	} = useHitBlowGame();
 
 	return (
 		<div className="box">
 			{compareHistory && <CompareHistory compareHistory={compareHistory} />}
 			{!clear && (
-				<div>
-					<InputDisplay
-						focus={focus}
-						inputDigits={inputDigits}
-						onClickInputDigit={onClickInputDigit}
-					/>
-					<Keypad
-						inputDigits={inputDigits}
-						onClickNum={onClickNum}
-						onClickDelete={onClickDelete}
-						onClickSubmit={onClickSubmit}
-					/>
-				</div>
+				<HitAndBlowPad submitAnswer={submitAnswer} key={gameRound} />
 			)}
-			{clear && <CompleteHitResult onClickReplay={onClickReplay} />}
+			{clear && <CompleteHitResult onClickReplay={resetGame} />}
 		</div>
 	);
 }
