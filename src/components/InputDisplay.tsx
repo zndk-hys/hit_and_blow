@@ -8,35 +8,17 @@ type Props = {
 
 export function InputDisplay({ focus, inputDigits, onClickInputDigit }: Props) {
 	return (
-		<div className="inputDigits">
-			<button
-				type="button"
-				onClick={() => onClickInputDigit(0)}
-				className={`inputDigit ${focus === 0 ? "focus" : ""}`}
-			>
-				{inputDigits[0]}
-			</button>
-			<button
-				type="button"
-				onClick={() => onClickInputDigit(1)}
-				className={`inputDigit ${focus === 1 ? "focus" : ""}`}
-			>
-				{inputDigits[1]}
-			</button>
-			<button
-				type="button"
-				onClick={() => onClickInputDigit(2)}
-				className={`inputDigit ${focus === 2 ? "focus" : ""}`}
-			>
-				{inputDigits[2]}
-			</button>
-			<button
-				type="button"
-				onClick={() => onClickInputDigit(3)}
-				className={`inputDigit ${focus === 3 ? "focus" : ""}`}
-			>
-				{inputDigits[3]}
-			</button>
+		<div className="inputDigits grid grid-cols-4 gap-3 mb-3">
+			{inputDigits.map((num, idx) => (
+				<button
+					key={String(idx)}
+					type="button"
+					onClick={() => onClickInputDigit(idx)}
+					className={`inputDigit flex justify-center items-center aspect-square border-1 ${focus === idx ? "border-blue-500" : "border-gray-300"} rounded-sm hover:bg-gray-50`}
+				>
+					{num}
+				</button>
+			))}
 		</div>
 	);
 }

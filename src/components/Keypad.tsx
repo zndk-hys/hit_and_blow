@@ -18,11 +18,11 @@ export function Keypad({
 
 	return (
 		<div>
-			<div className="inputButtons">
+			<div className="grid grid-cols-5 gap-2 mb-2">
 				{keys.map((key) => (
 					<button
 						key={key}
-						className="inputButton"
+						className="inputButton bg-gray-100 aspect-square rounded-sm hover:bg-gray-200 disabled:bg-gray-50 disabled:text-gray-400"
 						type="button"
 						onClick={() => onClickNum(key)}
 						disabled={inputDigits.includes(key)}
@@ -31,21 +31,23 @@ export function Keypad({
 					</button>
 				))}
 			</div>
-			<button
-				className="deleteButton"
-				type="button"
-				onClick={() => onClickDelete()}
-			>
-				削除
-			</button>
-			<button
-				className="submitButton"
-				type="button"
-				onClick={() => onClickSubmit()}
-				disabled={inputDigits.join("").length < DIGIT_LENGTH}
-			>
-				送信
-			</button>
+			<div className="grid grid-cols-2 gap-2">
+				<button
+					className="deleteButton bg-red-400 text-white font-bold rounded-sm hover:bg-red-500"
+					type="button"
+					onClick={() => onClickDelete()}
+				>
+					削除
+				</button>
+				<button
+					className="submitButton bg-blue-400 text-white font-bold py-2 rounded-sm hover:bg-blue-500 disabled:bg-gray-400"
+					type="button"
+					onClick={() => onClickSubmit()}
+					disabled={inputDigits.join("").length < DIGIT_LENGTH}
+				>
+					送信
+				</button>
+			</div>
 		</div>
 	);
 }

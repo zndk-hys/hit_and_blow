@@ -28,7 +28,7 @@ export function useHitBlowGame() {
 	};
 
 	const resetGame = () => {
-		setGameRound(gameRound => gameRound + 1);
+		setGameRound((gameRound) => gameRound + 1);
 		setRandomDigits(generateRandomDigits(DIGIT_LENGTH));
 		setCompareHistory([]);
 		setClear(false);
