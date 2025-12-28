@@ -6,15 +6,15 @@ type Props = {
 };
 
 export function CompareHistory({ compareHistory }: Props) {
-	const [assistDigit, setAssistDigit] = useState<Digits>('');
+	const [assistDigit, setAssistDigit] = useState<Digits>("");
 
 	const onMouseEnterDigit = (digit: Digits) => {
 		setAssistDigit(digit);
 	};
 
 	const onMouseLeaveDigit = () => {
-		setAssistDigit('');
-	}
+		setAssistDigit("");
+	};
 
 	return (
 		<div className="mb-5 text-sm">
@@ -25,14 +25,25 @@ export function CompareHistory({ compareHistory }: Props) {
 			</div>
 			<ul>
 				{compareHistory.map((record) => (
-					<li key={record.submitIndex} className="grid grid-cols-6 gap-1 text-center">
+					<li
+						key={record.submitIndex}
+						className="grid grid-cols-6 gap-1 text-center"
+					>
 						<div className="col-span-4 py-1 border-b-1 border-gray-300">
 							<ul className="grid grid-cols-4 gap-1">
-								{record.compareResult.digits.map(digit => {
-									const bg = assistDigit === digit ? 'bg-gray-200' : 'bg-gray-100';
+								{record.compareResult.digits.map((digit) => {
+									const bg =
+										assistDigit === digit ? "bg-gray-200" : "bg-gray-100";
 									return (
-										<li key={`${record.submitIndex}_${digit}`} className={`${bg} rounded py-1`} onMouseEnter={() => onMouseEnterDigit(digit)} onMouseLeave={() => onMouseLeaveDigit()}>{digit}</li>
-									)
+										<li
+											key={`${record.submitIndex}_${digit}`}
+											className={`${bg} rounded py-1`}
+											onMouseEnter={() => onMouseEnterDigit(digit)}
+											onMouseLeave={() => onMouseLeaveDigit()}
+										>
+											{digit}
+										</li>
+									);
 								})}
 							</ul>
 						</div>
