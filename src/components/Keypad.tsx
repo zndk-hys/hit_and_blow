@@ -45,7 +45,7 @@ export function Keypad({
 					onClick={() => onClickSubmit()}
 					disabled={inputDigits.join("").length < DIGIT_LENGTH}
 				>
-					送信
+					トライ
 				</button>
 			</div>
 		</div>
