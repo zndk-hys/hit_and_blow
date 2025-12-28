@@ -10,7 +10,7 @@ function App() {
 
 	return (
 		<>
-			<h1 className="text-center text-2xl font-bold mb-5">Hit & Blow</h1>
+			<h1 className="text-center text-2xl font-bold mb-4">Hit & Blow</h1>
 			<div className="box">
 				{compareHistory && <CompareHistory compareHistory={compareHistory} />}
 				{!clear && (
