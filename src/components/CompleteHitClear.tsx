@@ -2,7 +2,7 @@ type Props = {
 	onClickReplay: () => void;
 };
 
-export function CompleteHitResult({ onClickReplay }: Props) {
+export function CompleteHitClear({ onClickReplay }: Props) {
 	return (
 		<div>
 			クリア

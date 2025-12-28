@@ -1,6 +1,6 @@
 import "./App.css";
 import { CompareHistory } from "./components/CompareHistory";
-import { CompleteHitResult } from "./components/CompleteHitResult";
+import { CompleteHitClear } from "./components/CompleteHitClear";
 import { useHitBlowGame } from "./hooks/useHitBlowGame";
 import { HitAndBlowPad } from "./components/HitAndBlowPad";
 
@@ -16,7 +16,7 @@ function App() {
 				{!clear && (
 					<HitAndBlowPad submitAnswer={submitAnswer} key={gameRound} />
 				)}
-				{clear && <CompleteHitResult onClickReplay={resetGame} />}
+				{clear && <CompleteHitClear onClickReplay={resetGame} />}
 			</div>
 		</>
 	);
