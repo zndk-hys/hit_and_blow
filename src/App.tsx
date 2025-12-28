@@ -16,7 +16,7 @@ function App() {
 				{!clear && (
 					<HitAndBlowPad submitAnswer={submitAnswer} key={gameRound} />
 				)}
-				{clear && <CompleteHitClear onClickReplay={resetGame} />}
+				{clear && <CompleteHitClear trialCount={compareHistory.length} onClickReplay={resetGame} />}
 			</div>
 		</>
 	);
